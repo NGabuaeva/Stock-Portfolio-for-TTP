@@ -7,3 +7,4 @@ export { default as Navbar } from './navbar';
 export { default as UserHome } from './user-home';
 export { Login } from './login';
 export { Signup } from './register';
+export { default as Transactions } from './transactions';
