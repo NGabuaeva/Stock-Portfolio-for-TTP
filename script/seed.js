@@ -1,32 +1,40 @@
-'use strict'
+'use strict';
 
-const db = require('../server/db')
-const { User } = require('../server/db/models')
+const db = require('../server/db');
+const { User } = require('../server/db/models');
 
 async function seed() {
-  await db.sync({ force: true })
-  console.log('db synced!')
+  await db.sync({ force: true });
+  console.log('db synced!');
 
   const users = await Promise.all([
-    User.create({ email: 'gingerface@email.com', password: '123' }),
-    User.create({ email: 'pepper@email.com', password: '123' })
-  ])
+    User.create({
+      name: 'Gingrface',
+      email: 'gingerface@email.com',
+      password: '123',
+    }),
+    User.create({
+      name: 'Pepper',
+      email: 'pepper@email.com',
+      password: '123',
+    }),
+  ]);
 
-  console.log(`seeded ${users.length} users`)
-  console.log(`seeded successfully`)
+  console.log(`seeded ${users.length} users`);
+  console.log(`seeded successfully`);
 }
 
 async function runSeed() {
-  console.log('seeding...')
+  console.log('seeding...');
   try {
-    await seed()
+    await seed();
   } catch (err) {
-    console.error(err)
-    process.exitCode = 1
+    console.error(err);
+    process.exitCode = 1;
   } finally {
-    console.log('closing db connection')
-    await db.close()
-    console.log('db connection closed')
+    console.log('closing db connection');
+    await db.close();
+    console.log('db connection closed');
   }
 }
 
@@ -34,8 +42,8 @@ async function runSeed() {
 // `Async` functions always return a promise, so we can use `catch` to handle
 // any errors that might occur inside of `seed`.
 if (module === require.main) {
-  runSeed()
+  runSeed();
 }
 
 //  export the seed function for testing purposes (see `./seed.spec.js`)
-module.exports = seed
+module.exports = seed;
