@@ -7,11 +7,11 @@ const Transaction = db.define('transaction', {
     allowNul: false,
   },
   quantity: {
-    type: Sequelize.NUMBER,
+    type: Sequelize.INTEGER,
     allowNul: false,
   },
   price: {
-    type: Sequelize.NUMBER,
+    type: Sequelize.INTEGER,
     allowNul: false,
   },
 });

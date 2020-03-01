@@ -13,11 +13,8 @@ const User = db.define('user', {
     allowNull: false,
   },
   cash: {
-    type: Sequelize.NUMBER,
-    defaulValue: 5000,
-  },
-  stocks: {
-    type: Sequelize.ARRAY,
+    type: Sequelize.INTEGER,
+    defaultValue: 5000,
   },
   password: {
     type: Sequelize.STRING,
