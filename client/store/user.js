@@ -6,7 +6,6 @@ import history from '../history';
  */
 const GET_USER = 'GET_USER';
 const REMOVE_USER = 'REMOVE_USER';
-
 /**
  * INITIAL STATE
  */
@@ -21,6 +20,7 @@ const removeUser = () => ({ type: REMOVE_USER });
 /**
  * THUNK CREATORS
  */
+
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me');
@@ -31,14 +31,12 @@ export const me = () => async dispatch => {
 };
 
 export const auth = (email, password, method, name) => async dispatch => {
-  console.log('in the auth thunk. Method:', method);
   let res;
   try {
     res = await axios.post(`/auth/${method}`, { email, password, name });
   } catch (authError) {
     return dispatch(getUser({ error: authError }));
   }
-
   try {
     dispatch(getUser(res.data));
     history.push('/home');
@@ -54,6 +52,15 @@ export const logout = () => async dispatch => {
     history.push('/login');
   } catch (err) {
     console.error(err);
+  }
+};
+
+export const buyStock = (ticker, quantity) => async dispatch => {
+  try {
+    await axios.post('/api/transactions', ticker, quantity);
+    dispatch(me());
+  } catch (err) {
+    console.log(err);
   }
 };
 
