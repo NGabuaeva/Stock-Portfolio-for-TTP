@@ -1,16 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
+import StockForm from './stockForm';
 /**
  * COMPONENT
  */
 export const UserHome = props => {
-  const { email } = props;
+  const { cash, stocks } = props.user;
 
   return (
     <div>
-      <h3>Welcome, {email}</h3>
+      <div>
+        <h2>Portfolio (${cash})</h2>
+        {stocks.length ? (
+          <ul>
+            {stocks.map(stock => (
+              <div key={stock.id}>
+                <h4>
+                  {stock.ticker} - {stock.quantity} shares
+                </h4>{' '}
+                <h4>{stock.openingPrice * stock.quantity}</h4>
+              </div>
+            ))}
+          </ul>
+        ) : (
+          <h4>No Stocks yet</h4>
+        )}
+      </div>
+      <StockForm />
     </div>
   );
 };
@@ -20,7 +37,7 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    email: state.user.email,
+    user: state.user,
   };
 };
 

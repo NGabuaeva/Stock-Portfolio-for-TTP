@@ -13,8 +13,8 @@ const User = db.define('user', {
     allowNull: false,
   },
   cash: {
-    type: Sequelize.INTEGER,
-    defaultValue: 5000,
+    type: Sequelize.DECIMAL,
+    defaultValue: 5000.0,
   },
   password: {
     type: Sequelize.STRING,

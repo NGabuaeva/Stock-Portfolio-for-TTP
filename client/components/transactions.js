@@ -14,10 +14,13 @@ function Transactions() {
       <h3>Transactions</h3>
       {transactions.length ? (
         transactions.map(transaction => (
-          <div key={transaction.id}>{transaction.ticker}</div>
+          <div key={transaction.id}>
+            {transaction.type}({transaction.ticker}) - {transaction.quantity}{' '}
+            Shares @ {transaction.price}
+          </div>
         ))
       ) : (
-        <div>No Transactions</div>
+        <div>No Transactions Yet</div>
       )}
     </div>
   );

@@ -1,11 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
-const Transaction = db.define('transaction', {
-  type: {
-    type: Sequelize.STRING,
-    defaultValue: 'BUY',
-  },
+const Stock = db.define('stock', {
   ticker: {
     type: Sequelize.STRING,
     allowNul: false,
@@ -14,10 +10,10 @@ const Transaction = db.define('transaction', {
     type: Sequelize.INTEGER,
     allowNul: false,
   },
-  price: {
+  openingPrice: {
     type: Sequelize.INTEGER,
     allowNul: false,
   },
 });
 
-module.exports = Transaction;
+module.exports = Stock;
