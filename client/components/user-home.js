@@ -13,6 +13,7 @@ const UserHome = () => {
   useEffect(() => {
     dispatch(getPortfolio());
   }, []);
+
   return (
     <div>
       <div>

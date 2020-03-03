@@ -5,21 +5,17 @@ module.exports = router;
 
 router.get('/', async (req, res, next) => {
   try {
-    // console.log('in the back')
     const stocks = await Stock.findAll({
       where: {
         userId: req.user.id,
       },
     });
-    // console.log('stocks:', stocks)
     const portfolioPromises = stocks.map(async stock => {
       const stockData = await axios.get(
         `https://cloud.iexapis.com/stable/stock/${stock.ticker}/quote?token=${
           process.env.IEX_API
         }`
       );
-      // console.log('stockData:', stockData)
-      // console.log('typeof', typeof stockData.data.previousClose)
       stock.dataValues.openingPrice = stockData.data.previousClose;
       stock.dataValues.currentPrice = stockData.data.latestPrice;
       console.log('typeof', typeof stock.openingPrice);
