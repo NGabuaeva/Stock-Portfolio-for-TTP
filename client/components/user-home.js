@@ -1,16 +1,22 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import StockForm from './stockForm';
+import { getPortfolio } from '../store/portfolio';
 /**
  * COMPONENT
  */
-export const UserHome = props => {
-  const { cash, stocks } = props.user;
-  console.log('user:', props.user);
+const UserHome = () => {
+  const { cash } = useSelector(state => state.user);
+  const stocks = useSelector(state => state.portfolio);
+  const error = useSelector(state => state.error);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getPortfolio());
+  }, []);
   return (
     <div>
       <div>
-        <h2>Portfolio (${cash})</h2>
+        <h2>Portfolio (${Math.floor(cash * 100) / 100})</h2>
         {stocks.length ? (
           <ul>
             {stocks.map(stock => (
@@ -19,7 +25,7 @@ export const UserHome = props => {
                   {stock.ticker} - {stock.quantity} shares
                 </h4>{' '}
                 <h4>
-                  {Math.floor(+stock.price * +stock.quantity * 100) / 100}
+                  {Math.floor(stock.currentPrice * stock.quantity * 100) / 100}
                 </h4>
               </div>
             ))}
@@ -29,20 +35,9 @@ export const UserHome = props => {
         )}
       </div>
       <StockForm />
-      {props.error &&
-        props.error.response && <div> {props.error.response.data} </div>}
+      {error && error.response && <div> {error.response.data} </div>}
     </div>
   );
 };
 
-/**
- * CONTAINER
- */
-const mapState = state => {
-  return {
-    user: state.user,
-    error: state.error,
-  };
-};
-
-export default connect(mapState)(UserHome);
+export default UserHome;

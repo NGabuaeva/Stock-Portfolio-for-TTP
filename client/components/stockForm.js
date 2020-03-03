@@ -1,12 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { buyStock } from '../store/user';
+import { buyStock } from '../store/portfolio';
 
 function StockForm() {
   const { handleSubmit, register } = useForm();
   const dispatch = useDispatch();
-  const type = 'BUY';
   const onSubmit = values => {
     dispatch(buyStock(values));
   };

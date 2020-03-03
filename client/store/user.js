@@ -55,15 +55,6 @@ export const logout = () => async dispatch => {
   }
 };
 
-export const buyStock = values => async dispatch => {
-  try {
-    await axios.post('/api/transactions', values);
-    dispatch(me());
-  } catch (err) {
-    return dispatch(getError(err));
-  }
-};
-
 /**
  * REDUCER
  */

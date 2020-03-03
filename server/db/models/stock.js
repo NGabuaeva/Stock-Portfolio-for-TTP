@@ -10,10 +10,6 @@ const Stock = db.define('stock', {
     type: Sequelize.INTEGER,
     allowNul: false,
   },
-  price: {
-    type: Sequelize.DECIMAL,
-    allowNul: false,
-  },
 });
 
 module.exports = Stock;
