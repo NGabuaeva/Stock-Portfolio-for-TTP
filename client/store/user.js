@@ -1,6 +1,6 @@
 import axios from 'axios';
 import history from '../history';
-
+import { getError } from './error';
 /**
  * ACTION TYPES
  */
@@ -57,10 +57,10 @@ export const logout = () => async dispatch => {
 
 export const buyStock = values => async dispatch => {
   try {
-    const res = await axios.post('/api/transactions', values);
+    await axios.post('/api/transactions', values);
     dispatch(me());
   } catch (err) {
-    console.log(err);
+    return dispatch(getError(err));
   }
 };
 

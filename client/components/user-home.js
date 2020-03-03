@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import StockForm from './stockForm';
 /**
@@ -7,7 +6,7 @@ import StockForm from './stockForm';
  */
 export const UserHome = props => {
   const { cash, stocks } = props.user;
-
+  console.log('user:', props.user);
   return (
     <div>
       <div>
@@ -30,6 +29,8 @@ export const UserHome = props => {
         )}
       </div>
       <StockForm />
+      {props.error &&
+        props.error.response && <div> {props.error.response.data} </div>}
     </div>
   );
 };
@@ -40,6 +41,7 @@ export const UserHome = props => {
 const mapState = state => {
   return {
     user: state.user,
+    error: state.error,
   };
 };
 

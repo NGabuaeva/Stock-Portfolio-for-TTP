@@ -26,7 +26,6 @@ router.post('/', async (req, res, next) => {
         process.env.IEX_API
       }`
     );
-    console.log('stock:', stock);
     const stockData = stock.data;
     const userCash = +req.user.cash;
     const stockPrice = +stockData.latestPrice;
@@ -54,6 +53,7 @@ router.post('/', async (req, res, next) => {
         newStock[0].quantity += quantity;
         await newStock[0].save();
       }
+      req.user.update({ cash: req.user.cash - stockPrice * quantity });
       res.sendStatus(200);
     }
   } catch (err) {
