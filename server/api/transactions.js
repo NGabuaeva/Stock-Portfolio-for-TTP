@@ -26,6 +26,7 @@ router.post('/', async (req, res, next) => {
         process.env.IEX_API
       }`
     );
+    console.log('stock:', stock);
     const stockData = stock.data;
     const userCash = +req.user.cash;
     const stockPrice = +stockData.latestPrice;
@@ -35,7 +36,8 @@ router.post('/', async (req, res, next) => {
         "You don't have enough money on your account for this purchase"
       );
     } else {
-      const newTransaction = await Transaction.create({
+      await Transaction.create({
+        userId: req.user.id,
         type: 'BUY',
         ticker: ticker,
         quantity: quantity,
