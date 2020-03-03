@@ -57,9 +57,8 @@ export const logout = () => async dispatch => {
 
 export const buyStock = values => async dispatch => {
   try {
-    console.log('values from thunk:', values.ticker);
-    await axios.post('/api/transactions', values);
-    // dispatch(me());
+    const res = await axios.post('/api/transactions', values);
+    dispatch(me());
   } catch (err) {
     console.log(err);
   }

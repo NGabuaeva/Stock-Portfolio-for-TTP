@@ -19,7 +19,9 @@ export const UserHome = props => {
                 <h4>
                   {stock.ticker} - {stock.quantity} shares
                 </h4>{' '}
-                <h4>{stock.openingPrice * stock.quantity}</h4>
+                <h4>
+                  {Math.floor(+stock.price * +stock.quantity * 100) / 100}
+                </h4>
               </div>
             ))}
           </ul>

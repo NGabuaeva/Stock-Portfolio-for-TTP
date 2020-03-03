@@ -4,7 +4,7 @@ const db = require('../db');
 const Transaction = db.define('transaction', {
   type: {
     type: Sequelize.STRING,
-    defaultValue: 'BUY',
+    allowNul: false,
   },
   ticker: {
     type: Sequelize.STRING,
@@ -15,7 +15,7 @@ const Transaction = db.define('transaction', {
     allowNul: false,
   },
   price: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.DECIMAL,
     allowNul: false,
   },
 });

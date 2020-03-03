@@ -10,8 +10,8 @@ const Stock = db.define('stock', {
     type: Sequelize.INTEGER,
     allowNul: false,
   },
-  openingPrice: {
-    type: Sequelize.INTEGER,
+  price: {
+    type: Sequelize.DECIMAL,
     allowNul: false,
   },
 });
