@@ -15,7 +15,52 @@ nav a {
   margin: 1em;
 }
 
-form div {
+.greater {
+  color: green;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.equal {
+  color: gray;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.less {
+  color: red;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 1em;
-  display: inline-block;
+}
+
+.button {
+  margin-top: 5px;
+}
+
+.portfolio {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.title {
+  margin-left: 140px;
+}
+
+.price {
+  margin: 10px;
 }

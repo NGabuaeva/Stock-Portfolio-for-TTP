@@ -10,14 +10,16 @@ function StockForm() {
     dispatch(buyStock(values));
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="form">
       <label htmlFor="ticker">Ticker</label>
       <input type="text" name="ticker" ref={register} />
 
       <label htmlFor="quantity">Quantity</label>
       <input type="number" name="quantity" ref={register} />
 
-      <button type="submit">Buy</button>
+      <button className="button" type="submit">
+        Buy
+      </button>
     </form>
   );
 }
