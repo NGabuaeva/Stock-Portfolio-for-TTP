@@ -28,8 +28,7 @@ export const getPortfolio = () => async dispatch => {
 
 export const buyStock = values => async dispatch => {
   try {
-    const { data } = await axios.post('/api/portfolio', values);
-    console.log('data from thunk:', data);
+    await axios.post('/api/portfolio', values);
     dispatch(me());
     dispatch(getPortfolio());
   } catch (err) {

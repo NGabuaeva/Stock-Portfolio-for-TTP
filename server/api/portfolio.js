@@ -18,11 +18,9 @@ router.get('/', async (req, res, next) => {
       );
       stock.dataValues.openingPrice = stockData.data.previousClose;
       stock.dataValues.currentPrice = stockData.data.latestPrice;
-      console.log('typeof', typeof stock.openingPrice);
       return stock;
     });
     const portfolio = await Promise.all(portfolioPromises);
-    console.log('portfolio:', portfolio);
     res.json(portfolio);
   } catch (error) {
     next(error);
@@ -41,7 +39,6 @@ router.post('/', async (req, res, next) => {
     const stockData = stock.data;
     const userCash = +req.user.cash;
     const stockPrice = +stockData.latestPrice;
-    console.log('stock:', stockData);
     if (stockPrice * quantity > userCash) {
       throw new Error(
         "You don't have enough money on your account for this purchase"
@@ -68,7 +65,6 @@ router.post('/', async (req, res, next) => {
       req.user.update({ cash: req.user.cash - stockPrice * quantity });
       newStock[0].dataValues.currentPrice = stockPrice;
       newStock[0].dataValues.openingPrice = stockData.previousClose;
-      console.log('newStock', newStock[0]);
       res.json(newStock[0]);
     }
   } catch (err) {
