@@ -1303,7 +1303,7 @@
                       react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
                         react_router_dom__WEBPACK_IMPORTED_MODULE_2__['Route'],
                         {
-                          path: '/home',
+                          path: '/',
                           component:
                             _components__WEBPACK_IMPORTED_MODULE_4__[
                               'UserHome'
