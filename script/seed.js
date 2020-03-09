@@ -4,24 +4,28 @@ const db = require('../server/db');
 const { User } = require('../server/db/models');
 
 async function seed() {
-  await db.sync({ force: true });
-  console.log('db synced!');
+  try {
+    await db.sync({ force: true });
+    console.log('db synced!');
 
-  const users = await Promise.all([
-    User.create({
-      name: 'Gingrface',
-      email: 'gingerface@email.com',
-      password: '123',
-    }),
-    User.create({
-      name: 'Pepper',
-      email: 'pepper@email.com',
-      password: '123',
-    }),
-  ]);
+    const users = await Promise.all([
+      User.create({
+        name: 'Gingrface',
+        email: 'gingerface@email.com',
+        password: '123',
+      }),
+      User.create({
+        name: 'Pepper',
+        email: 'pepper@email.com',
+        password: '123',
+      }),
+    ]);
 
-  console.log(`seeded ${users.length} users`);
-  console.log(`seeded successfully`);
+    console.log(`seeded ${users.length} users`);
+    console.log(`seeded successfully`);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 async function runSeed() {
