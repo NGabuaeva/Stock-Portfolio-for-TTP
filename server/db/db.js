@@ -9,6 +9,7 @@ const db = new Sequelize(
     dialect: 'postgres',
   }
 );
+console.log('database:', process.env.DATABASE_URL)
 module.exports = db;
 
 if (process.env.NODE_ENV === 'test') {
