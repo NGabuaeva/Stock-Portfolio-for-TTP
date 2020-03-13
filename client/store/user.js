@@ -38,7 +38,7 @@ export const auth = (email, password, method, name) => async dispatch => {
   }
   try {
     dispatch(getUser(res.data));
-    history.push('/home');
+    history.push('/');
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr);
   }
@@ -57,7 +57,7 @@ export const logout = () => async dispatch => {
 /**
  * REDUCER
  */
-export default function(state = defaultUser, action) {
+export default function (state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
       return action.user;
