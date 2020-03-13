@@ -18,6 +18,8 @@ const setColor = stock => {
  * COMPONENT
  */
 const UserHome = () => {
+  const gimmeState = useSelector(state => state)
+  console.log(gimmeState)
   const { cash } = useSelector(state => state.user);
   const stocks = useSelector(state => state.portfolio);
   const error = useSelector(state => state.error);
@@ -48,8 +50,8 @@ const UserHome = () => {
             })}
           </ul>
         ) : (
-          <h4>No Stocks yet</h4>
-        )}
+            <h4>No Stocks yet</h4>
+          )}
         <StockForm />
         {error && error.response && <div> {error.response.data} </div>}
       </div>
